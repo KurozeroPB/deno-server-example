@@ -1,28 +1,22 @@
 import { app } from "https://denopkg.com/syumai/dinatra/mod.ts";
+import { HandlerConfig } from "https://denopkg.com/syumai/dinatra/handler.ts";
 
-// import routes manually since dynamic imports isn't supported
-// would be nice to have dynamic imports
-import index from "./routes/index.ts";
-import hello from "./routes/hello.ts";
+const rname = /.+\.route\.(t|j)s$/ui;
 
 async function main(): Promise<void> {
-    let routes = [
-        index,
-        hello
-    ];
+    const routes: HandlerConfig[] = [];
 
-    const dir = await Deno.readDir("./routes");
-    for (const file of dir) {
-        if (file.name.endsWith(".ts")) {
-            console.log(file.name);
-
-            // dynamic imports doesn't seem to be supported
-            // const temp = await import(`./routes/${file.name}`);
-            // routes.push(temp.default);
+    for await (const file of Deno.readDir("./routes")) {
+        if (rname.test(file.name)) {
+            const route = await import(`./routes/${file.name}`);
+            routes.push(route.default);
+            console.log(`Added [${route.path}] to routes`);
         }
     }
 
     app(...routes);
 }
 
-main().catch(console.error);
+if (import.meta.main) {
+    main().catch(console.error);
+}

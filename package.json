@@ -2,20 +2,20 @@
     "name": "deno-server-example",
     "version": "0.0.1",
     "description": "A barebone deno project",
+    "license": "MIT",
     "main": "main.ts",
-    "scripts": {
-        "test": "deno run --allow-net --allow-read main.ts"
-    },
     "author": {
         "email": "root@kurozeropb.info",
         "name": "KurozeroPB",
         "url": "https://kurozeropb.info"
     },
-    "license": "MIT",
+    "scripts": {
+        "test": "deno run -c tsconfig.json --unstable --allow-net --allow-read main.ts"
+    },
     "dependencies": {
         "deno_ls_plugin": "^0.1.0",
-        "typescript": "^3.3.1",
-        "typescript-deno-plugin": "^1.2.4"
+        "typescript": "^3.9.2",
+        "typescript-deno-plugin": "^1.27.0"
     },
     "devDependencies": {}
 }

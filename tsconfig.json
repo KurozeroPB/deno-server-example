@@ -1,14 +1,10 @@
 {
     "compilerOptions": {
-        "baseUrl": ".",
+        "target": "esnext",
+        "module": "esnext",
         "allowJs": true,
         "checkJs": true,
         "esModuleInterop": true,
-        "module": "esnext",
-        "moduleResolution": "node",
-        "noEmit": true,
-        "noLib": true,
-        "pretty": true,
         "resolveJsonModule": true,
         "plugins": [
             {
@@ -17,21 +13,6 @@
             {
                 "name": "typescript-deno-plugin"
             }
-        ],
-        "target": "esnext",
-        "paths": {
-            "deno": [
-                "../../../../../../home/kurozero/.deno/deno.d.ts"
-            ],
-            "https://*": [
-                "../../../../../../home/kurozero/.deno/deps/https/*"
-            ],
-            "http://*": [
-                "../../../../../../home/kurozero/.deno/deps/http/*"
-            ]
-        }
-    },
-    "include": [
-        "./**/*.ts"
-    ]
+        ]
+    }
 }
